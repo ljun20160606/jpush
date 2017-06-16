@@ -7,7 +7,7 @@ type (
 		Mobile *string   `db:"mobile" json:"mobile,omitempty"`
 	}
 
-	DeviceInfo struct {
+	Devices struct {
 		Tags   []string `db:"tags" json:"tags"`
 		Alias  *string  `db:"alias" json:"alias"`
 		Mobile *string  `db:"mobile" json:"mobile"`

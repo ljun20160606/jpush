@@ -4,8 +4,25 @@ import (
 	"github.com/LFZJun/jpush"
 )
 
+type JPushUrl int
+
+var (
+	JPushUrls = [...]string{
+		UrlDevice: VersionV3 + "/devices/",
+		UrlTag:    VersionV3 + "/tags/",
+		UrlAlias:  VersionV3 + "/alias/",
+	}
+)
+
 const (
 	VersionV3 = jpush.JPushDevice + "/v3"
-	UrlDevice = VersionV3 + "/devices/"
-	UrlTag    = VersionV3 + "/tags/"
 )
+const (
+	UrlDevice JPushUrl = iota
+	UrlTag
+	UrlAlias
+)
+
+func (j JPushUrl) String() string {
+	return JPushUrls[j]
+}
