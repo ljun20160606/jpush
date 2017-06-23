@@ -40,23 +40,23 @@ func Platform(i int) string {
 
 // client
 func (d device) PostClient(url JPushUrl, param string) *httpclient.HttpRequest {
-	return httpclient.Post(url.String()+param).Head("Authorization", d.Authorization)
+	return httpclient.Post(url.String() + param).Head("Authorization", d.Authorization)
 }
 
 func (d device) GetClient(url JPushUrl, param string) *httpclient.HttpRequest {
-	return httpclient.Get(url.String()+param).Head("Authorization", d.Authorization)
+	return httpclient.Get(url.String() + param).Head("Authorization", d.Authorization)
 }
 
 func (d device) AliasGet(alias string, platform int) *httpclient.HttpRequest {
-	return httpclient.Get(UrlAlias.String()+alias+"?platform="+Platform(platform)).Head("Authorization", d.Authorization)
+	return httpclient.Get(UrlAlias.String() + alias + "?platform=" + Platform(platform)).Head("Authorization", d.Authorization)
 }
 
 func (d device) AliasDelete(alias string, platform int) *httpclient.HttpRequest {
-	return httpclient.Delete(UrlAlias.String()+alias+"?platform="+Platform(platform)).Head("Authorization", d.Authorization)
+	return httpclient.Delete(UrlAlias.String() + alias + "?platform=" + Platform(platform)).Head("Authorization", d.Authorization)
 }
 
 func (d device) TagDelete(tag string, platform int) *httpclient.HttpRequest {
-	return httpclient.Delete(UrlTag.String()+tag+"?platform="+Platform(platform)).Head("Authorization", d.Authorization)
+	return httpclient.Delete(UrlTag.String() + tag + "?platform=" + Platform(platform)).Head("Authorization", d.Authorization)
 }
 
 // implement
@@ -88,17 +88,31 @@ func (d device) ResetTag(registrationID string) error {
 }
 
 func (d device) SetDevicesTag(registrationID string, add []string, remove []string) error {
+	addPtr, removePtr := &add, &remove
+	if len(add) == 0 {
+		addPtr = nil
+	}
+	if len(remove) == 0 {
+		removePtr = nil
+	}
 	sd := model.SetDeviceOption{
-		Tags: model.SetOption{Add: &add, Remove: &remove},
+		Tags: model.SetOption{Add: addPtr, Remove: removePtr},
 	}
 	return ResultSet(d.PostClient(UrlDevice, registrationID).JSON(sd).Send())
 }
 
 func (d device) SetTag(tag string, add, remove []string) error {
+	addPtr, removePtr := &add, &remove
+	if len(add) == 0 {
+		addPtr = nil
+	}
+	if len(remove) == 0 {
+		removePtr = nil
+	}
 	to := model.TagOption{
 		SetOption: model.SetOption{
-			Add:    &add,
-			Remove: &remove,
+			Add:    addPtr,
+			Remove: removePtr,
 		},
 	}
 	return ResultSet(d.PostClient(UrlTag, tag).JSON(to).Send())
