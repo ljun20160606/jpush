@@ -10,6 +10,7 @@ package main
 import (
 	"github.com/LFZJun/jpush/v3"
 	"github.com/LFZJun/jpush/v3/deviceApi/model"
+	"github.com/LFZJun/jpush/v3/deviceApi"
 )
 
 func main() {
@@ -26,9 +27,9 @@ func main() {
 		Mobile: nil,
 	})
 	// 查询别名
-	_, _ = jp.GetAlias("alias", 0)
+	_, _ = jp.GetAlias("alias", deviceApi.IOS)
 	// 删除别名
-	_ = jp.DeleteAlias("alias", 0)
+	_ = jp.DeleteAlias("alias", deviceApi.ANDROID)
 	// 查询标签列表
 	_, _ = jp.GetTags()
 	// 重置设备标签
