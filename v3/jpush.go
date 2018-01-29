@@ -2,7 +2,7 @@ package v3
 
 import (
 	"encoding/base64"
-	"github.com/LFZJun/jpush/v3/deviceApi"
+	"github.com/ljun20160606/jpush/v3/deviceApi"
 )
 
 type JPusher struct {

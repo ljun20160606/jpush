@@ -1,9 +1,9 @@
 package device_api
 
 import (
-	"github.com/LFZJun/jpush/v3"
-	"github.com/LFZJun/jpush/v3/deviceApi/model"
-	"github.com/LFZJun/jpush/v3/deviceApi"
+	"github.com/ljun20160606/jpush/v3"
+	"github.com/ljun20160606/jpush/v3/deviceApi/model"
+	"github.com/ljun20160606/jpush/v3/deviceApi"
 )
 
 func main() {

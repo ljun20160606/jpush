@@ -1,7 +1,7 @@
 package deviceApi
 
 import (
-	"github.com/LFZJun/jpush/v3/deviceApi/model"
+	"github.com/ljun20160606/jpush/v3/deviceApi/model"
 	"github.com/cocotyty/httpclient"
 )
 

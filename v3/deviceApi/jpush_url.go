@@ -1,7 +1,7 @@
 package deviceApi
 
 import (
-	"github.com/LFZJun/jpush"
+	"github.com/ljun20160606/jpush"
 )
 
 type JPushUrl int
